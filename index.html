@@ -91,17 +91,30 @@ nav a:hover{color:var(--accent)}
 .pipe .tag{margin-bottom:14px;display:block}
 .stages{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
 .stages::before{content:"";position:absolute;left:10%;right:10%;top:17px;height:2px;background:var(--line)}
-.flow{position:absolute;left:10%;right:10%;top:13px;height:10px;pointer-events:none}
-.flow i{position:absolute;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:run 4.5s linear infinite}
-@keyframes run{from{left:0;opacity:0}8%{opacity:1}92%{opacity:1}to{left:calc(100% - 10px);opacity:0}}
+.flow{position:absolute;left:0;right:0;top:13px;height:10px;pointer-events:none}
+.flow i{position:absolute;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);transition:left 1s ease-in-out,opacity .3s}
+.pipe-head{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:10px}
+.pipe-head .tag{margin:0}
+.pipe .intro{margin:0 0 20px;color:var(--muted);font-size:.93rem;max-width:62ch}
+.ctl{font:12px/1 var(--mono);padding:8px 12px;border:1px solid var(--line);border-radius:var(--radius);background:var(--bg);color:var(--fg);cursor:pointer}
+.ctl:hover{border-color:var(--accent);color:var(--accent)}
+.ctl:focus-visible{outline:2px solid var(--accent2);outline-offset:3px}
+.pbar{height:2px;margin-top:14px;background:var(--line);border-radius:2px;overflow:hidden}
+.pbar i{display:block;height:100%;width:0;background:var(--accent)}
+.pbar i.run{animation:fill 5s linear forwards}
+@keyframes fill{to{width:100%}}
+.hint{margin:10px 0 0;font:12px/1.5 var(--mono);color:var(--muted)}
 .stage{position:relative;background:none;border:0;color:var(--muted);font:12px/1.3 var(--mono);text-align:center;cursor:pointer;padding:0;display:grid;justify-items:center;gap:8px}
 .stage .node{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:2px solid var(--line);color:var(--muted);transition:.25s}
 .stage:hover .node,.stage.on .node{border-color:var(--accent);color:var(--accent);box-shadow:0 0 12px color-mix(in srgb,var(--accent) 45%,transparent)}
 .stage.on{color:var(--fg)}
 .stage:focus-visible{outline:2px solid var(--accent2);outline-offset:4px;border-radius:var(--radius)}
-.stage-desc{margin:16px 0 0;min-height:3.2em;color:var(--muted);font-size:.95rem;border-top:1px solid var(--line);padding-top:12px}
-.stage-desc b{color:var(--accent);font-family:var(--mono)}
-@media (max-width:420px){.stage{font-size:10.5px}.stage .node{width:30px;height:30px}.stages::before{top:14px}.flow{top:10px}}
+.stage-desc{margin:16px 0 0;min-height:9.5em;color:var(--muted);font-size:.95rem;border-top:1px solid var(--line);padding-top:12px}
+.stage-desc span{display:block}
+.stage-desc .ttl{color:var(--accent);font:700 .95rem/1.4 var(--mono);margin-bottom:4px}
+.stage-desc .help{margin-top:10px;color:var(--fg)}
+.stage-desc .help b{display:block;font:11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:4px}
+@media (max-width:420px){.stage{font-size:10.5px}.stage .node{width:30px;height:30px}.stages::before{top:14px}.flow{top:10px}.stage-desc{min-height:13em}}
 
 /* motion and interaction */
 .panel,.step,.row{transition:transform .25s,border-color .25s,box-shadow .25s}
@@ -113,7 +126,8 @@ nav a:hover{color:var(--accent)}
 .toast.show{opacity:1;transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){
   html{scroll-behavior:auto}
-  .flow i{animation:none;opacity:0}
+  .flow i{transition:none}
+  .pbar i.run{animation:none;width:100%}
   .js .reveal{opacity:1;transform:none;transition:none}
   .panel:hover{transform:none}
 }
@@ -184,17 +198,23 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
       <a class="btn primary" href="mailto:me@iamharshdoshi.com?subject=Hello%20Harsh">Email me</a>
       <a class="btn" href="https://github.com/doshi-harsh">GitHub</a>
     </div>
-    <div class="pipe" aria-label="Delivery pipeline">
-      <span class="tag">Where I fit in your delivery pipeline · tap a stage</span>
+    <div class="pipe" role="group" aria-label="How a software change reaches production">
+      <div class="pipe-head">
+        <span class="tag">Where I fit in your delivery pipeline</span>
+        <button class="ctl" type="button" id="play" aria-label="Pause the tour">❚❚ Pause</button>
+      </div>
+      <p class="intro">Every software change travels these five stages, from a developer's keyboard to your users. Here is what happens at each one, and where I help.</p>
       <div class="stages">
         <div class="flow" aria-hidden="true"><i></i></div>
-        <button class="stage on" type="button" aria-pressed="true" data-t="Commit" data-d="Every change starts in version control, with review, clear ownership and a trail you can audit."><span class="node">1</span>Commit</button>
-        <button class="stage" type="button" aria-pressed="false" data-t="Build" data-d="Reproducible builds for packages, images and containers, so what you test is what you ship."><span class="node">2</span>Build</button>
-        <button class="stage" type="button" aria-pressed="false" data-t="Test" data-d="Automated and hardware-in-the-loop tests, with reports people actually read."><span class="node">3</span>Test</button>
-        <button class="stage" type="button" aria-pressed="false" data-t="Scan" data-d="Vulnerabilities found, triaged and fixed before release, not after an incident."><span class="node">4</span>Scan</button>
-        <button class="stage" type="button" aria-pressed="false" data-t="Ship" data-d="Releases published and deployed to the cloud without manual steps or late nights."><span class="node">5</span>Ship</button>
+        <button class="stage on" type="button" aria-pressed="true" data-t="Commit" data-d="A developer's change is saved to version control and reviewed by a teammate." data-h="Branching, code review and clear ownership, so every change is traceable."><span class="node">1</span>Commit</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Build" data-d="The code is compiled and packaged into something that can run: a container, a package or an image." data-h="Reproducible builds, so what you test is exactly what you ship."><span class="node">2</span>Build</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Test" data-d="Automated checks prove the change works and has not broken anything else." data-h="Fast, reliable test suites and reports people actually read."><span class="node">3</span>Test</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Scan" data-d="The build is checked for known security weaknesses (CVEs) before it goes anywhere." data-h="Scanning, triage and fixes, so risks are closed before release, not after an incident."><span class="node">4</span>Scan</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Ship" data-d="The release is published and deployed to production or the cloud." data-h="Automated releases and rollbacks, so shipping is routine instead of a late-night event."><span class="node">5</span>Ship</button>
       </div>
-      <p class="stage-desc" aria-live="polite"></p>
+      <p class="stage-desc" aria-live="off"><span class="ttl">Commit</span><span class="what">A developer's change is saved to version control and reviewed by a teammate.</span><span class="help"><b>How I help</b>Branching, code review and clear ownership, so every change is traceable.</span></p>
+      <div class="pbar" aria-hidden="true"><i></i></div>
+      <p class="hint" id="pipe-hint">Auto-tour running. Click any stage to explore on your own.</p>
     </div>
     <div class="stats">
       <div class="stat"><b data-count="12" data-suffix="+">12+</b><span>Years building</span></div>
@@ -306,18 +326,66 @@ footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12
   var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   document.documentElement.classList.add('js');
 
-  // pipeline: click or auto-cycle until the visitor takes over
-  var stages=[].slice.call(document.querySelectorAll('.stage')),
-      desc=document.querySelector('.stage-desc'),cur=0,timer=null;
+  // pipeline tour: the dot travels stage to stage, holds, and explains each one.
+  // Clicking a stage (or Pause) hands control to the visitor; it only runs while in view.
+  var HOLD=5000,TRAVEL=1000;
+  var pipe=document.querySelector('.pipe'),
+      stagesEl=document.querySelector('.stages'),
+      stages=[].slice.call(document.querySelectorAll('.stage')),
+      dot=document.querySelector('.flow i'),
+      desc=document.querySelector('.stage-desc'),
+      bar=document.querySelector('.pbar i'),
+      btn=document.getElementById('play'),
+      hint=document.getElementById('pipe-hint'),
+      cur=0,timer=null,userStopped=reduce,inView=false;
+  function place(i){
+    var b=stagesEl.getBoundingClientRect(),r=stages[i].querySelector('.node').getBoundingClientRect();
+    dot.style.left=(r.left-b.left+r.width/2-5)+'px';
+  }
   function show(i){
     cur=i;
     stages.forEach(function(s,n){var on=n===i;s.classList.toggle('on',on);s.setAttribute('aria-pressed',on)});
-    desc.innerHTML='<b>'+stages[i].dataset.t+'</b> — '+stages[i].dataset.d;
+    var s=stages[i].dataset;
+    desc.innerHTML='<span class="ttl">'+s.t+'</span><span class="what">'+s.d+'</span><span class="help"><b>How I help</b>'+s.h+'</span>';
   }
-  function stop(){if(timer){clearInterval(timer);timer=null}}
-  stages.forEach(function(s,n){s.addEventListener('click',function(){stop();show(n)})});
-  show(0);
-  if(!reduce){timer=setInterval(function(){show((cur+1)%stages.length)},3500)}
+  function clear(){clearTimeout(timer);timer=null}
+  function barOff(){bar.classList.remove('run')}
+  function barOn(){bar.classList.remove('run');void bar.offsetWidth;bar.classList.add('run')}
+  function ui(){
+    btn.textContent=userStopped?'▶ Play':'❚❚ Pause';
+    btn.setAttribute('aria-label',userStopped?'Play the tour':'Pause the tour');
+    hint.textContent=userStopped?'Paused. Press Play to continue the tour, or click any stage.':'Auto-tour running. Click any stage to explore on your own.';
+    desc.setAttribute('aria-live',userStopped?'polite':'off');
+  }
+  function arrive(i){show(i);barOn();timer=setTimeout(next,HOLD)}
+  function next(){
+    var n=(cur+1)%stages.length;barOff();
+    if(n===0){
+      dot.style.opacity=0;
+      timer=setTimeout(function(){
+        dot.style.transition='none';place(0);void dot.offsetWidth;dot.style.transition='';dot.style.opacity=1;
+        timer=setTimeout(function(){arrive(0)},400);
+      },400);
+    }else{place(n);timer=setTimeout(function(){arrive(n)},TRAVEL)}
+  }
+  function sync(){clear();if(userStopped||!inView){barOff();return}arrive(cur)}
+  stages.forEach(function(s,n){s.addEventListener('click',function(){
+    userStopped=true;clear();barOff();place(n);show(n);ui();
+  })});
+  btn.addEventListener('click',function(){
+    userStopped=!userStopped;ui();
+    if(userStopped){clear();barOff()}else{sync()}
+  });
+  if('ResizeObserver' in window){new ResizeObserver(function(){place(cur)}).observe(stagesEl)}
+  else{window.addEventListener('resize',function(){place(cur)})}
+  window.addEventListener('load',function(){place(cur)});
+  show(0);place(0);ui();
+  if('IntersectionObserver' in window){
+    new IntersectionObserver(function(es){
+      inView=es[0].isIntersecting;
+      if(inView){sync()}else{clear();barOff()}
+    },{threshold:.5}).observe(pipe);
+  }else{inView=true;sync()}
 
   // reveal on scroll
   var items=[].slice.call(document.querySelectorAll('section,.panel,.step,.row'));
