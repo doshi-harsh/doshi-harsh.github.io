@@ -1,112 +1,331 @@
-<!DOCTYPE html>
-<html>
-<style>
-body, html {
-  height: 100%;
-  margin: 0;
-}
-
-.bgimg {
-  height: 100%;
-  background-position: center;
-  background-size: cover;
-  position: relative;
-  color: white;
-  font-family: "Courier New", Courier, monospace;
-  font-size: 25px;
-}
-
-.bgimg {
-    background: linear-gradient(180deg, #51befb, #f36252);
-    background-size: 400% 400%;
-
-    -webkit-animation: AnimationName 39s ease infinite;
-    -moz-animation: AnimationName 39s ease infinite;
-    -o-animation: AnimationName 39s ease infinite;
-    animation: AnimationName 39s ease infinite;
-}
-
-@-webkit-keyframes AnimationName {
-    0%{background-position:53% 0%}
-    50%{background-position:48% 100%}
-    100%{background-position:53% 0%}
-}
-@-moz-keyframes AnimationName {
-    0%{background-position:53% 0%}
-    50%{background-position:48% 100%}
-    100%{background-position:53% 0%}
-}
-@-o-keyframes AnimationName {
-    0%{background-position:53% 0%}
-    50%{background-position:48% 100%}
-    100%{background-position:53% 0%}
-}
-@keyframes AnimationName {
-    0%{background-position:53% 0%}
-    50%{background-position:48% 100%}
-    100%{background-position:53% 0%}
-}
-
-.topleft {
-  position: absolute;
-  top: 0;
-  left: 16px;
-}
-
-.bottomleft {
-  position: absolute;
-  bottom: 0;
-  left: 16px;
-}
-
-.middle {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-}
-
-hr {
-  margin: auto;
-  width: 40%;
-}
-</style>
-<body>
-
-<div class="bgimg">
-  <div class="topleft">
-    <p>HARSH DOSHI | @doshi-harsh , @iamharshdoshi , @hardo91 </p>
-  </div>
-  <div class="middle">
-    <h1>COMING SOON</h1>
-    <hr>
-    <p id="demo" style="font-size:30px"></p>
-  </div>
-  <div class="bottomleft">
-    <p> Harsh Doshi | @ <span id="year" ></span></p>
-  </div>
-</div>
-
-<script>
-var year = new Date();
-document.getElementById("year").innerHTML = year.getFullYear();
-var countDownDate = new Date("May 31, 2024 00:00:00").getTime();
-var countdownfunction = setInterval(function() {
-  var now = new Date().getTime();
-  var distance = countDownDate - now;
-  var days = Math.floor(distance / (1000 * 60 * 60 * 24));
-  var hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-  var minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-  var seconds = Math.floor((distance % (1000 * 60)) / 1000);
-  document.getElementById("demo").innerHTML = days + "d " + hours + "h "
-  + minutes + "m " + seconds + "s ";
-  if (distance < 0) {
-    clearInterval(countdownfunction);
-    document.getElementById("demo").innerHTML = "EXPIRED";
-  }
-}, 1000);
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Harsh Doshi · DevOps, Cloud and Automation Engineer</title>
+<meta name="description" content="Harsh Doshi is a senior engineer in Ottawa who helps teams ship software faster and more safely: CI/CD, cloud, Linux packaging, vulnerability management and automation.">
+<link rel="canonical" href="https://doshi-harsh.github.io/">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='12' fill='%230b0f14'/%3E%3Ctext x='32' y='43' font-family='monospace' font-size='30' font-weight='700' text-anchor='middle' fill='%234fd1c5'%3EHD%3C/text%3E%3C/svg%3E">
+<meta name="author" content="Harsh Doshi">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Harsh Doshi · DevOps, Cloud and Automation Engineer">
+<meta property="og:description" content="I help teams ship software faster, safer and with less manual work.">
+<meta property="og:url" content="https://doshi-harsh.github.io/">
+<meta name="twitter:card" content="summary">
+<meta name="theme-color" content="#0b0f14">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@type":"Person","name":"Harsh Doshi","url":"https://doshi-harsh.github.io/","email":"mailto:me@iamharshdoshi.com","jobTitle":"DevOps, Cloud and Automation Engineer","address":{"@type":"PostalAddress","addressLocality":"Ottawa","addressRegion":"ON","addressCountry":"CA"},"sameAs":["https://github.com/doshi-harsh"],"knowsAbout":["DevOps","CI/CD","Kubernetes","Cloud infrastructure","Debian packaging","Vulnerability management","Test automation"]}
 </script>
+<style>
+:root{
+  --bg:#0b0f14;--panel:#111821;--line:#1e2a38;--fg:#d9e2ee;--muted:#8093a8;
+  --accent:#4fd1c5;--accent2:#f0b429;--on:#04201e;--radius:6px;
+  --mono:ui-monospace,"Cascadia Code","SF Mono",Consolas,"Liberation Mono",monospace;
+  --sans:system-ui,-apple-system,"Segoe UI",Roboto,sans-serif;
+}
+@media (prefers-color-scheme:light){:root{
+  --bg:#f4f6f9;--panel:#fff;--line:#d8e0ea;--fg:#17212e;--muted:#5a6b80;--accent:#0b7a75;--accent2:#8a5a00;--on:#fff}}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--fg);font:16px/1.65 var(--sans);
+  background-image:linear-gradient(var(--line) 1px,transparent 1px),linear-gradient(90deg,var(--line) 1px,transparent 1px);
+  background-size:48px 48px;background-position:-1px -1px}
+body::before{content:"";position:fixed;inset:0;background:radial-gradient(ellipse at 20% 0%,transparent 0,var(--bg) 75%);pointer-events:none}
+main{position:relative;max-width:920px;margin:0 auto;padding:40px 16px 64px}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+.tag{font:12px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+a:focus-visible,.btn:focus-visible{outline:2px solid var(--accent2);outline-offset:3px;border-radius:var(--radius)}
+.skip{position:absolute;left:-999px;top:8px;background:var(--accent);color:var(--on);padding:8px 12px;border-radius:var(--radius);font:13px var(--mono);z-index:10}
+.skip:focus{left:8px}
+nav{display:flex;gap:16px;flex-wrap:wrap}
+nav a{color:var(--muted)}
+nav a:hover{color:var(--accent)}
+.stats{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;margin-top:32px}
+.stat{padding:12px 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.stat b{display:block;font:700 1.4rem/1.2 var(--mono);color:var(--accent)}
+.stat span{font:12px/1.4 var(--mono);color:var(--muted);text-transform:uppercase;letter-spacing:.08em}
+.blockers{list-style:none;margin:0;padding:0;display:grid;gap:8px;grid-template-columns:repeat(auto-fit,minmax(300px,1fr))}
+.blockers li{padding:12px 14px 12px 38px;position:relative;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);font-size:.97rem}
+.blockers li::before{content:"!";position:absolute;left:14px;top:12px;font:700 13px/1.6 var(--mono);color:var(--accent2)}
+.tagline{display:inline-block;font:11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent2);margin-bottom:10px}
+.panel .result{margin-top:12px;padding-top:10px;border-top:1px dashed var(--line);color:var(--fg);font-size:.9rem}
+.panel .result b{display:block;font:11px/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--accent);margin-bottom:4px}
+.note{margin:16px 0 0;color:var(--muted);font:13px/1.6 var(--mono)}
+.ask{margin:0 0 18px;padding:0;list-style:none;display:grid;gap:6px;color:var(--muted);font-size:.95rem}
+.ask li::before{content:"▸ ";color:var(--accent)}
 
+/* pipeline visual */
+.pipe{margin-top:36px;padding:18px 16px 14px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel)}
+.pipe .tag{margin-bottom:14px;display:block}
+.stages{position:relative;display:grid;grid-template-columns:repeat(5,1fr);gap:6px}
+.stages::before{content:"";position:absolute;left:10%;right:10%;top:17px;height:2px;background:var(--line)}
+.flow{position:absolute;left:10%;right:10%;top:13px;height:10px;pointer-events:none}
+.flow i{position:absolute;top:0;left:0;width:10px;height:10px;border-radius:50%;background:var(--accent);box-shadow:0 0 10px var(--accent);animation:run 4.5s linear infinite}
+@keyframes run{from{left:0;opacity:0}8%{opacity:1}92%{opacity:1}to{left:calc(100% - 10px);opacity:0}}
+.stage{position:relative;background:none;border:0;color:var(--muted);font:12px/1.3 var(--mono);text-align:center;cursor:pointer;padding:0;display:grid;justify-items:center;gap:8px}
+.stage .node{width:36px;height:36px;border-radius:50%;display:grid;place-items:center;background:var(--bg);border:2px solid var(--line);color:var(--muted);transition:.25s}
+.stage:hover .node,.stage.on .node{border-color:var(--accent);color:var(--accent);box-shadow:0 0 12px color-mix(in srgb,var(--accent) 45%,transparent)}
+.stage.on{color:var(--fg)}
+.stage:focus-visible{outline:2px solid var(--accent2);outline-offset:4px;border-radius:var(--radius)}
+.stage-desc{margin:16px 0 0;min-height:3.2em;color:var(--muted);font-size:.95rem;border-top:1px solid var(--line);padding-top:12px}
+.stage-desc b{color:var(--accent);font-family:var(--mono)}
+@media (max-width:420px){.stage{font-size:10.5px}.stage .node{width:30px;height:30px}.stages::before{top:14px}.flow{top:10px}}
+
+/* motion and interaction */
+.panel,.step,.row{transition:transform .25s,border-color .25s,box-shadow .25s}
+.panel:hover{transform:translateY(-3px);border-color:var(--accent);box-shadow:0 8px 24px -12px var(--accent)}
+.row:hover,.step:hover{border-color:var(--accent)}
+.js .reveal{opacity:0;transform:translateY(14px);transition:opacity .6s ease,transform .6s ease}
+.js .reveal.in{opacity:1;transform:none}
+.toast{position:fixed;left:50%;bottom:24px;transform:translate(-50%,20px);background:var(--accent);color:var(--on);font:13px var(--mono);padding:10px 16px;border-radius:var(--radius);opacity:0;transition:.3s;pointer-events:none}
+.toast.show{opacity:1;transform:translate(-50%,0)}
+@media (prefers-reduced-motion:reduce){
+  html{scroll-behavior:auto}
+  .flow i{animation:none;opacity:0}
+  .js .reveal{opacity:1;transform:none;transition:none}
+  .panel:hover{transform:none}
+}
+
+.bar{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap;padding:8px 12px;border:1px solid var(--line);
+  border-radius:var(--radius);background:var(--panel);font:12px/1.4 var(--mono);color:var(--muted)}
+.dot{display:inline-block;width:8px;height:8px;border-radius:50%;background:var(--accent);margin-right:8px;box-shadow:0 0 8px var(--accent)}
+
+header{padding:56px 0 8px}
+h1{font-size:clamp(2.1rem,6vw,3.3rem);line-height:1.08;margin:12px 0 16px;letter-spacing:-.02em;max-width:18ch}
+h1 em{font-style:normal;color:var(--accent)}
+.lead{max-width:60ch;color:var(--muted);font-size:1.08rem;margin:0 0 24px}
+.name{font:600 1rem/1.4 var(--mono);color:var(--fg);margin-bottom:4px}
+.links{display:flex;gap:10px;flex-wrap:wrap}
+.btn{font:13px/1 var(--mono);padding:12px 16px;border:1px solid var(--line);border-radius:var(--radius);background:var(--panel);color:var(--fg)}
+.btn:hover{border-color:var(--accent);text-decoration:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:var(--on);font-weight:700}
+
+section{margin-top:56px}
+h2{display:flex;align-items:center;gap:12px;margin:0 0 16px;font:13px/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+h2::before{content:"//";color:var(--accent)}
+h2::after{content:"";flex:1;height:1px;background:var(--line)}
+.grid{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(260px,1fr))}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:var(--radius);padding:18px;position:relative}
+.panel::before{content:"";position:absolute;top:-1px;left:-1px;width:14px;height:14px;border-top:2px solid var(--accent);border-left:2px solid var(--accent);border-top-left-radius:var(--radius)}
+.panel .n{font:12px/1 var(--mono);color:var(--accent2);margin-bottom:10px}
+.panel h3{margin:0 0 6px;font:600 1rem/1.3 var(--sans)}
+.panel p{margin:0;color:var(--muted);font-size:.94rem}
+
+.steps{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));counter-reset:s}
+.step{padding:14px 16px;border-left:2px solid var(--accent);background:var(--panel);border-radius:0 var(--radius) var(--radius) 0}
+.step b{display:block;font:600 .95rem/1.3 var(--mono);margin-bottom:4px}
+.step span{color:var(--muted);font-size:.92rem}
+
+.stack{display:grid;gap:8px}
+.row{display:grid;grid-template-columns:150px 1fr;gap:12px;padding:10px 14px;background:var(--panel);border:1px solid var(--line);border-radius:var(--radius)}
+.row .k{font:12px/1.7 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--accent2)}
+.row .v{font:13px/1.7 var(--mono)}
+@media (max-width:560px){.row{grid-template-columns:1fr;gap:2px}}
+
+.cta{margin-top:56px;padding:28px;border:1px solid var(--accent);border-radius:var(--radius);background:var(--panel);text-align:left}
+.cta h2{margin-bottom:12px}
+.cta h2::after{display:none}
+.cta p{margin:0 0 18px;color:var(--muted);max-width:56ch}
+
+footer{margin-top:40px;padding-top:16px;border-top:1px solid var(--line);font:12px/1.6 var(--mono);color:var(--muted);display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+</style>
+</head>
+<body>
+<a class="skip" href="#help">Skip to content</a>
+<main>
+
+  <div class="bar">
+    <span><span class="dot"></span>OPEN FOR A CONVERSATION · OTTAWA, CANADA</span>
+    <nav aria-label="Sections">
+      <a href="#help">Help</a>
+      <a href="#services">Services</a>
+      <a href="#record">Track record</a>
+      <a href="#toolkit">Toolkit</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+
+  <header>
+    <div class="name">Harsh Doshi</div>
+    <h1>I help teams ship software <em>faster, safer</em> and with less manual work.</h1>
+    <p class="lead">Senior engineer with over a decade across DevOps, cloud, Linux and security automation. I turn slow, risky release processes into pipelines you can trust, and I explain what I build so the whole team can run it.</p>
+    <div class="links">
+      <a class="btn primary" href="mailto:me@iamharshdoshi.com?subject=Hello%20Harsh">Email me</a>
+      <a class="btn" href="https://github.com/doshi-harsh">GitHub</a>
+    </div>
+    <div class="pipe" aria-label="Delivery pipeline">
+      <span class="tag">Where I fit in your delivery pipeline · tap a stage</span>
+      <div class="stages">
+        <div class="flow" aria-hidden="true"><i></i></div>
+        <button class="stage on" type="button" aria-pressed="true" data-t="Commit" data-d="Every change starts in version control, with review, clear ownership and a trail you can audit."><span class="node">1</span>Commit</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Build" data-d="Reproducible builds for packages, images and containers, so what you test is what you ship."><span class="node">2</span>Build</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Test" data-d="Automated and hardware-in-the-loop tests, with reports people actually read."><span class="node">3</span>Test</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Scan" data-d="Vulnerabilities found, triaged and fixed before release, not after an incident."><span class="node">4</span>Scan</button>
+        <button class="stage" type="button" aria-pressed="false" data-t="Ship" data-d="Releases published and deployed to the cloud without manual steps or late nights."><span class="node">5</span>Ship</button>
+      </div>
+      <p class="stage-desc" aria-live="polite"></p>
+    </div>
+    <div class="stats">
+      <div class="stat"><b data-count="12" data-suffix="+">12+</b><span>Years building</span></div>
+      <div class="stat"><b data-count="3">3</b><span>Clouds: AWS, Azure, GCP</span></div>
+      <div class="stat"><b>CSM</b><span>Certified Scrum Master</span></div>
+    </div>
+  </header>
+
+  <section id="help">
+    <h2>How I can help</h2>
+    <div class="grid">
+      <div class="panel"><div class="n">01</div><h3>Automate delivery</h3><p>CI/CD pipelines, scheduled jobs and release automation that cut manual steps and make every build repeatable.</p></div>
+      <div class="panel"><div class="n">02</div><h3>Build on the cloud</h3><p>Kubernetes, containers and infrastructure as code on AWS, Azure and GCP, with sensible permissions and cost awareness.</p></div>
+      <div class="panel"><div class="n">03</div><h3>Secure what you ship</h3><p>Vulnerability scanning, triage and reporting, certificates and identity, so known risks are found and fixed early.</p></div>
+      <div class="panel"><div class="n">04</div><h3>Work with Linux</h3><p>Debian packaging, repositories, image builds and the details that keep a distribution reliable.</p></div>
+      <div class="panel"><div class="n">05</div><h3>Test with confidence</h3><p>Automated and hardware-in-the-loop testing, with reports people actually read.</p></div>
+      <div class="panel"><div class="n">06</div><h3>Lead and unblock</h3><p>Agile delivery, careful code review and mentoring. I'm a certified Scrum Master who still writes code.</p></div>
+    </div>
+  </section>
+
+  <section id="blockers">
+    <h2>Sound familiar?</h2>
+    <ul class="blockers">
+      <li>Releases are manual, slow and stressful.</li>
+      <li>A build works on one machine and fails on another.</li>
+      <li>Security findings pile up and nobody owns them.</li>
+      <li>The application is a monolith that is hard to change and scale.</li>
+      <li>Cloud access, permissions and secrets have grown messy.</li>
+      <li>Tests are too slow or too flaky to trust.</li>
+      <li>Package and image builds are fragile and hard to reproduce.</li>
+      <li>The team is capable but lacks time to fix the plumbing.</li>
+    </ul>
+  </section>
+
+  <section id="services">
+    <h2>Ways to work together</h2>
+    <div class="grid">
+      <div class="panel"><h3>Delivery review</h3><p>I look at your pipelines, builds and release steps and give you a ranked list of fixes, with the quick wins first.</p></div>
+      <div class="panel"><h3>Pipeline and automation build</h3><p>Hands-on CI/CD, scheduled jobs and release automation, documented so your team owns it afterwards.</p></div>
+      <div class="panel"><h3>Cloud and Kubernetes</h3><p>Container and infrastructure-as-code setup, hosting-to-cloud moves, and tidy permissions and secrets.</p></div>
+      <div class="panel"><h3>Vulnerability workflow</h3><p>A working process for scanning, triage, mitigation and reporting, so known risks are tracked and closed.</p></div>
+      <div class="panel"><h3>Linux packaging and images</h3><p>Debian packaging, repositories and reproducible image builds.</p></div>
+      <div class="panel"><h3>Team enablement</h3><p>Code review practices, agile delivery and mentoring, so the skills stay when I leave.</p></div>
+    </div>
+    <p class="note">Engagements can start with a short conversation. Scope and terms are agreed up front.</p>
+  </section>
+
+  <section id="record">
+    <h2>Track record</h2>
+    <div class="grid">
+      <div class="panel"><span class="tagline">Architecture</span><p>Broke a monolithic web application into containerised microservices on Kubernetes, improving developer workflow and scalability.</p><p class="result"><b>Result</b>Faster developer workflow, easier scaling and quicker processing.</p></div>
+      <div class="panel"><span class="tagline">Automation</span><p>Built fully automated deployment pipelines with Git hooks, webhooks and PowerShell, with deployment logs posted to Slack.</p><p class="result"><b>Result</b>Releases ship through one repeatable path, and every deployment is visible to the whole team.</p></div>
+      <div class="panel"><span class="tagline">Cloud</span><p>Ran production infrastructure on Google Cloud: VMs, SQL, storage, API management, network security and billing. Moved client applications from VPS hosting to AWS and Google Cloud.</p><p class="result"><b>Result</b>Applications running on managed cloud infrastructure instead of single hosts.</p></div>
+      <div class="panel"><span class="tagline">Azure</span><p>Administered Azure environments: AKS, Key Vault, service principals and custom permission models.</p><p class="result"><b>Result</b>Controlled access to cloud resources and secrets, with permissions that fit each team's role.</p></div>
+      <div class="panel"><span class="tagline">Test and quality</span><p>Built automated testing, deployment and stress testing for a telecom-grade security product, including critical verification before commissioning.</p><p class="result"><b>Result</b>Key commissioning risks found and reduced before the product went live.</p></div>
+      <div class="panel"><span class="tagline">Vulnerabilities</span><p>Ran CVE scanning, triage, mitigation and publishing for a Linux distribution, alongside Debian packaging and automated upstream version tracking.</p><p class="result"><b>Result</b>Known vulnerabilities tracked from detection through triage and mitigation to publication.</p></div>
+      <div class="panel"><span class="tagline">Web and data</span><p>Led CMS and Laravel platforms, integrated email and SMS services, queried large fundraising and engagement datasets with SQL, and brought sites up to WCAG 2.0 accessibility.</p><p class="result"><b>Result</b>More accessible sites with stronger organic search visibility.</p></div>
+      <div class="panel"><span class="tagline">People</span><p>Introduced agile workflows, led small teams and mentored junior developers and analysts.</p><p class="result"><b>Result</b>A shared delivery rhythm, and junior engineers supported through hands-on mentoring.</p></div>
+    </div>
+    <p class="note">Industries: telecom and security, healthcare software, open-source Linux, large public web platforms.</p>
+  </section>
+
+  <section id="how">
+    <h2>How I work</h2>
+    <div class="steps">
+      <div class="step"><b>Listen</b><span>Understand the problem, the constraints and what "done" means.</span></div>
+      <div class="step"><b>Plan</b><span>Small steps, clear owners, no surprises.</span></div>
+      <div class="step"><b>Build</b><span>Automated, tested and documented as it goes.</span></div>
+      <div class="step"><b>Hand over</b><span>Your team can run it without me.</span></div>
+    </div>
+  </section>
+
+  <section id="toolkit">
+    <h2>Toolkit</h2>
+    <div class="stack">
+      <div class="row"><span class="k">Delivery</span><span class="v">GitLab CI · GitHub Actions · Jenkins · Helm · Flux · Terraform</span></div>
+      <div class="row"><span class="k">Platforms</span><span class="v">Kubernetes · Docker · AWS · Azure · GCP · OpenStack</span></div>
+      <div class="row"><span class="k">Linux and security</span><span class="v">Debian · APT · Trivy · PKI · OAuth · IAM</span></div>
+      <div class="row"><span class="k">Code</span><span class="v">Go · Python · TypeScript · Shell · Java · PHP</span></div>
+      <div class="row"><span class="k">Web</span><span class="v">Vue · Node · Laravel · Django · Drupal · WordPress</span></div>
+      <div class="row"><span class="k">Quality</span><span class="v">LAVA · Robot · Cypress · JMeter · Postman · Grafana · Prometheus</span></div>
+    </div>
+  </section>
+
+  <section class="cta" id="contact">
+    <h2>Let's talk</h2>
+    <p>Have a pipeline that keeps breaking, a release process that takes too long, or a security backlog nobody owns? Send me a few lines and I'll tell you honestly whether and how I can help.</p>
+    <ul class="ask">
+      <li>What is blocking you right now</li>
+      <li>Your stack (cloud, CI system, languages)</li>
+      <li>Your timeline and who will work with me</li>
+    </ul>
+    <div class="links">
+      <a class="btn primary" href="mailto:me@iamharshdoshi.com?subject=Consultation%20enquiry">me@iamharshdoshi.com</a>
+      <button class="btn" type="button" id="copy">Copy email</button>
+      <a class="btn" href="https://github.com/doshi-harsh">github.com/doshi-harsh</a>
+    </div>
+  </section>
+
+  <footer>
+    <span>© Harsh Doshi</span>
+    <span>Ottawa, Ontario</span>
+  </footer>
+
+</main>
+<div class="toast" id="toast" role="status"></div>
+<script>
+(function(){
+  var reduce=window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  document.documentElement.classList.add('js');
+
+  // pipeline: click or auto-cycle until the visitor takes over
+  var stages=[].slice.call(document.querySelectorAll('.stage')),
+      desc=document.querySelector('.stage-desc'),cur=0,timer=null;
+  function show(i){
+    cur=i;
+    stages.forEach(function(s,n){var on=n===i;s.classList.toggle('on',on);s.setAttribute('aria-pressed',on)});
+    desc.innerHTML='<b>'+stages[i].dataset.t+'</b> — '+stages[i].dataset.d;
+  }
+  function stop(){if(timer){clearInterval(timer);timer=null}}
+  stages.forEach(function(s,n){s.addEventListener('click',function(){stop();show(n)})});
+  show(0);
+  if(!reduce){timer=setInterval(function(){show((cur+1)%stages.length)},3500)}
+
+  // reveal on scroll
+  var items=[].slice.call(document.querySelectorAll('section,.panel,.step,.row'));
+  items.forEach(function(el){el.classList.add('reveal')});
+  function reveal(){
+    var h=window.innerHeight;
+    items.forEach(function(el){
+      if(!el.classList.contains('in')&&el.getBoundingClientRect().top<h*.92){el.classList.add('in')}
+    });
+  }
+  if(reduce){items.forEach(function(el){el.classList.add('in')})}
+  else{
+    reveal();
+    window.addEventListener('scroll',reveal,{passive:true});
+    window.addEventListener('resize',reveal);
+    // failsafe: never leave content hidden if scroll events don't arrive
+    setTimeout(function(){items.forEach(function(el){el.classList.add('in')})},4000);
+  }
+
+  // count-up stats
+  if(!reduce){
+    [].forEach.call(document.querySelectorAll('[data-count]'),function(b){
+      var end=+b.dataset.count,suf=b.dataset.suffix||'',t0=null;
+      function tick(t){t0=t0||t;var p=Math.min((t-t0)/900,1);b.textContent=Math.round(end*p)+(p===1?suf:'');if(p<1)requestAnimationFrame(tick)}
+      requestAnimationFrame(tick);
+    });
+  }
+
+  // copy email
+  var toast=document.getElementById('toast');
+  document.getElementById('copy').addEventListener('click',function(){
+    var addr='me@iamharshdoshi.com';
+    function done(){toast.textContent='Email copied';toast.classList.add('show');setTimeout(function(){toast.classList.remove('show')},1800)}
+    if(navigator.clipboard){navigator.clipboard.writeText(addr).then(done,function(){window.location='mailto:'+addr})}
+    else{window.location='mailto:'+addr}
+  });
+})();
+</script>
 </body>
 </html>
