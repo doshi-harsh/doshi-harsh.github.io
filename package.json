@@ -1,0 +1,8 @@
+{
+  "name": "doshi-harsh-site",
+  "private": true,
+  "type": "module",
+  "scripts": { "build": "node scripts/build-blog.mjs" },
+  "dependencies": { "marked": "14.1.4" },
+  "engines": { "node": ">=22" }
+}

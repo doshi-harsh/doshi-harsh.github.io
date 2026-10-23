@@ -1,0 +1,37 @@
+name: blog
+
+# Posts arrive as content/blog/<slug>.md (committed by the private marketing repo).
+# This builds them into static pages and commits the result; Pages serves the files as they are.
+on:
+  push:
+    branches: [master]
+    paths: ['content/blog/**', 'scripts/build-blog.mjs', 'package.json', 'package-lock.json']
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: blog
+  cancel-in-progress: false
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+      - run: npm ci
+      - run: node scripts/build-blog.mjs
+      - run: |
+          git add -A blog sitemap.xml
+          if ! git diff --cached --quiet; then
+            git config user.name "blog-bot"
+            git config user.email "blog-bot@users.noreply.github.com"
+            git commit -m "blog: rebuild"
+            git pull --rebase origin master
+            git push origin HEAD:master
+          fi

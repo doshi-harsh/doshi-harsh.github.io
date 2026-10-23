@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+<channel>
+<title>Harsh Doshi: Writing</title>
+<link>https://doshi-harsh.github.io/blog/</link>
+<description>Notes on delivery, DevOps, leading engineering teams and building with Claude.</description>
+<language>en-ca</language>
+<atom:link href="https://doshi-harsh.github.io/blog/feed.xml" rel="self" type="application/rss+xml"/>
+
+</channel>
+</rss>
